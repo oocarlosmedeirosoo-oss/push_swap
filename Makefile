@@ -6,7 +6,8 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = alg_chunk_based.c alg_insertion_sort.c alg_radix_sort.c \
-	push_swap_utils.c helper_with_printf.c teste.c \
+	push_swap_utils.c helper.c teste.c \
+	ope_swap_push.c
 	
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: cbarbosa <cbarbosa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 17:46:03 by mifranci          #+#    #+#             */
-/*   Updated: 2026/04/29 20:36:31 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/04/30 19:12:27 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,17 @@
 # include <stdio.h>
 # include <unistd.h>
 
-
-typedef struct stack
-{
-	signed long int	data;
-	struct stack *next;
-} stack;
-
-/* //nodes - valores e ponteiros para o proximo
-typedef struct s_node
-{
-    int             value;
-    struct s_node   *next;
-}   t_node;
-
-//stack - ponteiro para controlar o conteudo da stack em causa
 typedef struct s_stack
 {
-    t_node  *top;
-    int     size;
+    int             data;
+    struct s_stack  *next;
 }   t_stack;
- */
-// ope_push_swap.c
-void	sa(stack **a, stack **b);
-void	sb(stack **b);
-void	ss(stack **a, stack **b);
-void printf_stacks(stack *a, stack *b, char *str);
-void decifer(char *s);
+
+// ope_swap_push.c
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
 
 #endif

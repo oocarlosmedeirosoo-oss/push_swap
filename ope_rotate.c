@@ -6,13 +6,13 @@
 /*   By: cbarbosa <cbarbosa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:14:05 by cbarbosa          #+#    #+#             */
-/*   Updated: 2026/04/29 16:14:48 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/04/30 18:43:38 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// (rotate a): Shift up all elements of stack a by one.
+/* // (rotate a): Shift up all elements of stack a by one.
 void	ra(stack **a)
 {
 	stack	*tmp;
@@ -94,3 +94,5 @@ void	rrr(stack **a, stack **b)
 	rra(a);
 	rrb(b);
 }
+
+ */
