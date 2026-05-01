@@ -30,4 +30,10 @@ void	ss(t_stack **a, t_stack **b);
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
 
+// ope_rotate.c
+
+//disorder_metric.c
+float	ft_disorder_metric(t_stack *a);
+
+
 #endif

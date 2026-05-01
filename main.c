@@ -85,22 +85,46 @@ void	pb(t_stack **a, t_stack **b)
 	*b = temp;
 }
 //Shift up all elements of stack a by one. - The first element becomes the last one.
-/* void	ra(t_stack **a)
+void	ra(t_stack **a)
 {
-	t_stack *temp;
+	t_stack *first;
+	t_stack *current;
 
-	if (!a || !(*a)->next)
+	if (!a || !(a) || !(*a)->next)
 		return ;
-	temp = (*a)->next;
-	()
+	first = *a;
+	*a = first->next;
+	current = *a;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = first;
+	first->next = NULL;
+}
+//  Shift up all elements of stack b by one. The first element becomes the last one.
+void	rb(t_stack **b)
+{
+	t_stack *first;
+	t_stack *current;
 
-	*a = temp;
-	
-}  */
+	if (!b || !(b) || !(*b)->next)
+		return ;
+	first = *b;
+	*b = first->next;
+	current = *b;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = first;
+	first->next = NULL;
+}
 
-/* rb (rotate b): Shift up all elements of stack b by one.
-The first element becomes the last one.
-rr : ra and rb at the same time.
+void	rr(t_stack **a, t_stack **b)
+{
+	ra(a);
+	rb(b);
+}
+
+
+/* 
 rra (reverse rotate a): Shift down all elements of stack a by one.
 The last element becomes the first one.
 rrb (reverse rotate b): Shift down all elements of stack b by one.
@@ -111,6 +135,7 @@ int main(void)
 {
     t_stack *a = NULL;
 	t_stack *b = NULL;
+	ft_disorder_metric(a);
 	printf("Stack A: Valores Iniciais\n");
     push_top(&a, newnode(3));
     push_top(&a, newnode(1));
@@ -118,12 +143,14 @@ int main(void)
 	push_top(&a, newnode(5));
 	push_top(&a, newnode(4));
 	print_stack(a);
+	ft_disorder_metric(a);
 	printf("\n");
 	printf("Stack B: Inicialmente a 0\n");
 	print_stack(b);
 	printf("\n");
+	ft_disorder_metric(a);
 
-	printf("SA - Swap the first two elements at the top of stack a.\n");
+	printf("Exec SA - Swap the first two elements at the top of stack a.\n");
 	printf("Stack A:\n");
 	sa(&a);
 	print_stack(a);
@@ -131,7 +158,7 @@ int main(void)
 	print_stack(b);
 	printf("\n");
 
-	printf("PB - Take the first element at the top of a and put it at the top of b.\n");
+	printf("Exec PB - Take the first element at the top of a and put it at the top of b.\n");
 	printf("Stack A:\n");
 	pb(&a, &b);
 	print_stack(a);
@@ -139,7 +166,7 @@ int main(void)
 	print_stack(b);
 	printf("\n");
 
-	printf("PB - Take the first element at the top of a and put it at the top of b.\n");
+	printf("Exec PB - Take the first element at the top of a and put it at the top of b.\n");
 	printf("Stack A:\n");
 	pb(&a, &b);
 	print_stack(a);
@@ -147,7 +174,7 @@ int main(void)
 	print_stack(b);
 	printf("\n");
 
-	printf("SB - Swap the first two elements at the top of stack b.\n");
+	printf("Exec SB - Swap the first two elements at the top of stack b.\n");
 	printf("Stack A:\n");
 	sb(&b);
 	print_stack(a);
@@ -155,7 +182,7 @@ int main(void)
 	print_stack(b);
 	printf("\n");
 
-	printf("SS - Swap sa and sb at the same time.\n");
+	printf("Exec SS - Swap sa and sb at the same time.\n");
 	printf("Stack A:\n");
 	ss(&a, &b);
 	print_stack(a);
@@ -163,7 +190,7 @@ int main(void)
 	print_stack(b);
 	printf("\n");
 
-	printf("PB - Take the first element at the top of a and put it at the top of b.\n");
+	printf("Exec PB - Take the first element at the top of a and put it at the top of b.\n");
 	printf("Stack A:\n");
 	pb(&a, &b);
 	print_stack(a);
@@ -171,13 +198,37 @@ int main(void)
 	print_stack(b);
 	printf("\n");
 
-	/* printf("PA - Take the first element at the top of b and put it at the top of a.\n");
+	printf("PA - Take the first element at the top of b and put it at the top of a.\n");
 	printf("Stack A:\n");
 	pa(&a, &b);
 	print_stack(a);
 	printf("Stack B:\n");
 	print_stack(b);
-	printf("\n"); */
+	printf("\n"); 
+
+	printf("RA -  Shift up all elements of stack a by one. The first element becomes the last one\n");
+	printf("Stack A:\n");
+	ra(&a);
+	print_stack(a);
+	printf("Stack B:\n");
+	print_stack(b);
+	printf("\n");
+
+	printf("RB -  Shift up all elements of stack a by one. The first element becomes the last one\n");
+	printf("Stack A:\n");
+	rb(&b);
+	print_stack(a);
+	printf("Stack B:\n");
+	print_stack(b);
+	printf("\n");
+
+	printf("RR -  Shift up all elements of stack ra and rb at the same time.\n");
+	printf("Stack A:\n");
+	rr(&a, &b);
+	print_stack(a);
+	printf("Stack B:\n");
+	print_stack(b);
+	printf("\n");
 
     return 0;
 }
@@ -212,34 +263,4 @@ int main(void)
 
 1 3 2
  */
-
-//EXPLICACAO PARA ESSA PORRA DE PONTEIROS XD - ...CONFUSAO DO CARALHO... RA && RB
-
-/*
-*a;			3
-(*a)->next;	1 <-temp;
-			2<-temp->next;
-
-*a;			3
-			1
-			2 
-
-*a;			3
-			1
-			2 
-
-*a;			3 
-			1
-			2 
-
-*a;			3 
-			1
-			2 
-
-*a;			1 <-temp;
-			2 
-			3 
-
-1 3 2
-*/
 

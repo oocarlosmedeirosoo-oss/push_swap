@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdint.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -68,5 +69,12 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int		ft_printf(const char *str, ...);
+int		ft_print_char(char c);
+int		ft_print_str(char *str);
+int		ft_print_int(int n);
+int		ft_print_unsigned(unsigned int n);
+int		ft_print_hex(unsigned long n, char type);
+int		ft_print_ptr(void *ptr);
 
 #endif
