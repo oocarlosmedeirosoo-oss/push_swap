@@ -58,22 +58,3 @@ float	ft_disorder_metric(t_stack *a)
 	return (mistakes / pairs);
 	
 }
-
-/*
-In this subject, disorder is a number between 0 and 1 that tells how far your initial
-stack a is from being sorted.
-
-É um nuemro entre 0 <--> 1
-
-If the numbers are already in the right order, the disorder is 0.
-
-If they are in the worst possible order, the disorder is 1.
-
-Anything in between means your stack is partly sorted, but still messy.
-
-To calculate it, you can think of looking at all the possible pairs of numbers in the stack.
-
-Each time a bigger number appears before a smaller one, that pair counts as a mistake.
-
-The more mistakes you have, the closer the disorder is to 1.
-*\

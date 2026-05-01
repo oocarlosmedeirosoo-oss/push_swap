@@ -66,3 +66,5 @@ void	pb(t_stack **a, t_stack **b)
 	temp->next = *b;
 	*b = temp;
 }
+
+

@@ -44,18 +44,16 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-signed int verifications(char *str)
+int verifications(char *str)
 {
-	int str_len;
 	int i;
 	int j;
 
-	str_len = ft_strlen(str);
 	i = 1;
-	while (i < str_len)
+	while (i < argc)
 	{
 		j = i + 1;
-		if (argv[i][j])
+		if (argv[i][j] )
 	}
 }
 
