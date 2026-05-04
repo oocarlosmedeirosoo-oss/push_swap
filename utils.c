@@ -1,79 +1,99 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbarbosa <cbarbosa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/08 18:33:39 by mifranci          #+#    #+#             */
-/*   Updated: 2026/04/29 20:28:05 by cbarbosa         ###   ########.fr       */
+/*   Created: 2026/04/15 20:11:18 by cbarbosa          #+#    #+#             */
+/*   Updated: 2026/05/04 09:39:52 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	ft_atoi(const char *nptr)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
-	int	j;
-	int	k;
+	ft_memset(s, 0, n);
+}
+
+static int	ft_count_words(const char *str, char c)
+{
+	size_t	i;
+	size_t	count;
 
 	i = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	j = 1;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	count = 0;
+	if (!str)
+		return (0);
+	while (str[i])
 	{
-		if (nptr[i] == '-')
-			j = -1;
-		i++;
+		while (str[i] && str[i] == c)
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && str[i] != c)
+			i++;
 	}
-	k = 0;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		k = (k * 10) + (nptr[i] - '0');
-		i++;
-	}
-	return (k * j);
+	return (count);
 }
 
-int	ft_isdigit(int c)
+static char	*ft_get_word(const char *str, char c)
 {
-	if ((c >= '0' && c <= '9'))
-		return (1);
-	return (0);
-}
+	size_t	i;
+	size_t	j;
+	char	*word;
 
-int verifications(char *str)
-{
-	int i;
-	int j;
-
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	word = malloc(sizeof(char) * (i + 1));
+	if (!word)
+		return (NULL);
+	j = 0;
+	while (j < i)
 	{
-		j = i + 1;
-		if (argv[i][j] )
+		word[j] = str[j];
+		j++;
 	}
+	word[j] = '\0';
+	return (word);
 }
 
-
-
-int check_valid_argv(int argc, char const **argv)
+static void	ft_free(char **new, int x)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i < argc)
+	while (x >= 0)
 	{
-		j = 0;
-		if (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]))
-			j++;
-		while (argv[i][j])
-			if (!(ft_isdigit(argv[i][j++])))
-				return (1);
+		free(new[x]);
+		x--;
+	}
+	free(new);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**new;
+	size_t	i;
+	size_t	words;
+
+	if (!s)
+		return (NULL);
+	words = ft_count_words(s, c);
+	new = malloc(sizeof(char *) * (words + 1));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (i < words)
+	{
+		while (*s && *s == c)
+			s++;
+		new[i] = ft_get_word(s, c);
+		if (!new)
+			return (ft_free(new, i), NULL);
+		while (*s && *s != c)
+			s++;
 		i++;
 	}
-	return (0);
+	new[i] = NULL;
+	return (new);
 }

@@ -3,15 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ope_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbarbosa <cbarbosa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:14:05 by cbarbosa          #+#    #+#             */
-/*   Updated: 2026/04/30 18:43:38 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/05/04 09:49:02 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// (rotate a): Shift up all elements of stack a by one.
+void	ra(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp;
+
+	if (*a && (*a)->next)
+	{
+		tmp = *a;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = *a;
+		*a = (*a)->next;
+		tmp = tmp->next;
+		tmp->next = NULL;
+	}
+	(void)b;
+}
+// (rotate b): Shift up all elements of stack b by one.
+void	rb(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp;
+	(void)a;
+	if (*b && (*b)->next)
+	{
+		tmp = *b;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = *b;
+		*b = (*b)->next;
+		tmp = tmp->next;
+		tmp->next = NULL;
+	}
+}
+
+// (Rotate): ra and rb at the same time.
+void	rr(t_stack **a, t_stack **b)
+{
+	ra(a, b);
+	rb(a, b);
+}
 void	rra(t_stack **a)
 {
 	t_stack *tmp;
@@ -43,11 +83,4 @@ void	rrb(t_stack **b)
 		tmp->next = NULL;
 	}
 	
-}
-
-// rra and rrb at the same time.
-void	rrr(t_stack **a, t_stack **b)
-{
-	rra(a);
-	rrb(b);
 }

@@ -17,10 +17,21 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 
 void	ft_lstadd_front(t_stack **lst, t_stack *new)
 {
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
+	t_stack	*node;
+	t_stack	*i;
+
+	node = malloc(sizeof(*node));
+	node->data = ft_atoi(data);
+	node->next = NULL;
+	if (*head)
+	{
+		i = *head;
+		while (i->next)
+			i = i->next;
+		i->next = node;
+	}
+	else
+		*head = node;
 }
 
 t_stack	*ft_lstlast(t_stack *lst)

@@ -12,18 +12,11 @@
 
 #include "push_swap.h"
 
-// You must measure the disorder before doing any moves.
-static int	ft_lstsize(t_stack *lst)
+// rra and rrb at the same time.
+void	rrr(t_stack **a, t_stack **b)
 {
-	size_t	count;
-
-	count = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		count++;
-	}
-	return (count);
+	rra(a);
+	rrb(b);
 }
 float	ft_disorder_metric(t_stack *a)
 {
@@ -57,4 +50,73 @@ float	ft_disorder_metric(t_stack *a)
 	printf("mistakes = %0.2f\n", mistakes);
 	return (mistakes / pairs);
 	
+}
+
+int check_valid_argv(int argc, char const **argv, t_stack **a)
+{
+	int	i;
+	int	j;
+	char *set = "0123456789 -+";
+	char **splitted;
+
+	i = 1;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if ((argv[i][j] == '-' || argv[i][j] == '+') && (!ft_isdigit(argv[i][j + 1])))
+				return (1);
+			if (!(ft_strchr(set, argv[i][j++])))
+				return (1);
+		}
+		splitted - ft_plit(argv[i], ' ');
+		while (*splitted)
+		{
+			ft_lstadd_back(a, *splitted);
+			splitted++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	int_repeated(t_stack *a)
+{
+	t_stack *tmp;
+	int max_value;
+	int min_value;
+	int *array_positive;
+	int *array_negative;
+
+	tmp = a;
+	max_value = tmp->content;
+	min_value = tmp->content;
+	while (tmp)
+	{
+		if (tmp->content > max_value)
+			max_value = tmp->content;
+		if (tmp->content < min_value)
+			min_value = tmp->content;
+		tmp = tmp->next;
+	}
+	array_positive = ft_calloc(sizeof(int), max_value + 1);
+	array_negative = ft_calloc(sizeof(int), (min_value + 1) * -1);
+	while (a)
+	{
+		if (a->content < 0)
+		{
+			array_negative[(a->content) * -1] += 1;
+			if (array_negative[(a->content) * -1] > 1)
+				return (1);
+		}
+		else
+		{
+			array_positive[a->content] += 1;
+			if (array_positive[a->content] > 1)
+				return (1);
+		}
+		a = a->next;
+	}
+	return (0);
 }

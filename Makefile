@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -I./libft
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = disorder_metric.c main.c ope_rotate.c ope_swap_push.c utils.c
+SRCS = 
 	
 OBJS = $(SRCS:.c=.o)
 

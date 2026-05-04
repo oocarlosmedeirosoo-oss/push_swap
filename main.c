@@ -232,35 +232,3 @@ int main(void)
 
     return 0;
 }
-
-//EXPLICACAO PARA ESSA PORRA DE PONTEIROS XD - ...CONFUSAO DO CARALHO... SA - SB && SS
-
-
-/* 
-*a;			3
-(*a)->next;	1
-			2
-
-*a;			3
-(*a)->next;	1 <-temp;
-			2 <-temp->next;
-
-*a;			3
-			1 <-temp;
-(*a)->next;	2 <-temp->next;
-
-*a;			3 <-temp->next;
-			1 <-temp;
-(*a)->next;	2 
-
-*a;			3 <-temp->next;
-			1 <-temp;
-(*a)->next;	2 
-
-*a;			1 <-temp;
-			3 <-temp->next;
-(*a)->next;	2 
-
-1 3 2
- */
-
