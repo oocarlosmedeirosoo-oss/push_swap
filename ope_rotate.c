@@ -6,7 +6,7 @@
 /*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:14:05 by cbarbosa          #+#    #+#             */
-/*   Updated: 2026/05/04 09:49:02 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/05/04 13:36:04 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	rb(t_stack **a, t_stack **b)
 		tmp = tmp->next;
 		tmp->next = NULL;
 	}
+	printf("rb\n");
 }
 
 // (Rotate): ra and rb at the same time.
@@ -69,10 +70,10 @@ void	rra(t_stack **a)
 }
 
 // (reverse rotate b): Shift down all elements of t_stack b by one
-void	rrb(t_stack **b)
+void	rrb(t_stack **a, t_stack **b)
 {
 	t_stack *tmp;
-
+	(void)a;
 	if (*b && (*b)->next)
 	{
 		tmp = *b;
@@ -82,5 +83,5 @@ void	rrb(t_stack **b)
 		*b = tmp->next;
 		tmp->next = NULL;
 	}
-	
+	printf("rrb\n");
 }

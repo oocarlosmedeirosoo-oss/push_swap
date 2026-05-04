@@ -16,7 +16,7 @@
 void	rrr(t_stack **a, t_stack **b)
 {
 	rra(a);
-	rrb(b);
+	rrb(a, b);
 }
 float	ft_disorder_metric(t_stack *a)
 {
@@ -46,8 +46,8 @@ float	ft_disorder_metric(t_stack *a)
 	}
 	if (pairs == 0)
 		return (0.0);
-	printf("total_pairs = %0.2f\n", pairs);
-	printf("mistakes = %0.2f\n", mistakes);
+/* 	printf("total_pairs = %0.2f\n", pairs);
+	printf("mistakes = %0.2f\n", mistakes); */
 	return (mistakes / pairs);
 	
 }
@@ -70,10 +70,10 @@ int check_valid_argv(int argc, char const **argv, t_stack **a)
 			if (!(ft_strchr(set, argv[i][j++])))
 				return (1);
 		}
-		splitted - ft_plit(argv[i], ' ');
+		splitted = ft_split(argv[i], ' ');
 		while (*splitted)
 		{
-			ft_lstadd_back(a, *splitted);
+			add_back(a, *splitted);
 			splitted++;
 		}
 		i++;
@@ -90,30 +90,30 @@ int	int_repeated(t_stack *a)
 	int *array_negative;
 
 	tmp = a;
-	max_value = tmp->content;
-	min_value = tmp->content;
+	max_value = tmp->data;
+	min_value = tmp->data;
 	while (tmp)
 	{
-		if (tmp->content > max_value)
-			max_value = tmp->content;
-		if (tmp->content < min_value)
-			min_value = tmp->content;
+		if (tmp->data > max_value)
+			max_value = tmp->data;
+		if (tmp->data < min_value)
+			min_value = tmp->data;
 		tmp = tmp->next;
 	}
 	array_positive = ft_calloc(sizeof(int), max_value + 1);
 	array_negative = ft_calloc(sizeof(int), (min_value + 1) * -1);
 	while (a)
 	{
-		if (a->content < 0)
+		if (a->data < 0)
 		{
-			array_negative[(a->content) * -1] += 1;
-			if (array_negative[(a->content) * -1] > 1)
+			array_negative[(a->data) * -1] += 1;
+			if (array_negative[(a->data) * -1] > 1)
 				return (1);
 		}
 		else
 		{
-			array_positive[a->content] += 1;
-			if (array_positive[a->content] > 1)
+			array_positive[a->data] += 1;
+			if (array_positive[a->data] > 1)
 				return (1);
 		}
 		a = a->next;

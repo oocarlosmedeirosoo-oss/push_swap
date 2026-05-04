@@ -1,30 +1,18 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./libft
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+CFLAGS = -Wall -Wextra -Werror
 
-SRCS = 
-	
-OBJS = $(SRCS:.c=.o)
+SRC = lst_utils.c ope_rotate.c ope_swap_push.c utils.c veri_utils.c verifications.c push_swap.c alg_insertion_sort.c
 
-all: $(NAME)
-
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME):
+	cc -g -Wall -Werror -Wextra -o $(NAME) $(SRC)
 
 clean:
 	rm -f $(OBJS)
-	$(MAKE) clean -C $(LIBFT_DIR) || true
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) fclean -C $(LIBFT_DIR) || true
 
-re: fclean all
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re
-

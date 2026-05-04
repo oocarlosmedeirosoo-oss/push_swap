@@ -6,11 +6,11 @@
 /*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 20:11:18 by cbarbosa          #+#    #+#             */
-/*   Updated: 2026/05/04 09:39:52 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/05/04 13:15:45 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 void	ft_bzero(void *s, size_t n)
 {

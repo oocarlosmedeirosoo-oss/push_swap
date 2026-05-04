@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ope_swap_push.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbarbosa <cbarbosa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:13:45 by cbarbosa          #+#    #+#             */
-/*   Updated: 2026/04/30 20:11:37 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/05/04 13:45:19 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	pa(t_stack **a, t_stack **b)
 	*b = (*b)->next;
 	temp->next = *a;
 	*a = temp;
+	printf("pa\n");
 }
 // Take the first element at the top of a and put it at the top of b. - Do nothing if b is empty.
 void	pb(t_stack **a, t_stack **b)
@@ -65,6 +66,7 @@ void	pb(t_stack **a, t_stack **b)
 	*a = (*a)->next;
 	temp->next = *b;
 	*b = temp;
+	printf("pb\n");
 }
 
 

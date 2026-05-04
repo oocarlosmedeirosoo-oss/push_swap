@@ -1,0 +1,7 @@
+3 algoritmos
+
+1. Insertion n^2
+2. Chunk nVn
+3. Radix n log n
+
+Conceitos de Complexidade
