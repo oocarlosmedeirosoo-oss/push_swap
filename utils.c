@@ -72,10 +72,11 @@ int	has_duplicate(t_stack *s, int value)
 	}
 	return (0);
 }
+
 void	print_stack(t_stack *s)
 {
-	t_node *temp;
-	
+	t_node	*temp;
+
 	temp = s->top;
 	while (temp)
 	{

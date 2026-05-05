@@ -3,9 +3,9 @@
 t_stacks	*parse_args(int argc, char **argv)
 {
 	t_stacks	*data;
-	int		value;
-	int		i;
-	t_node	*new;
+	int			value;
+	int			i;
+	t_node		*new;
 
 	if (argc < 2)
 		return (NULL);
