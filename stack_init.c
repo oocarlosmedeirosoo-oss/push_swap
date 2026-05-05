@@ -17,41 +17,41 @@ t_node	*node_new(int value)
 // Cria uma stack vazia.
 t_stack	*stack_new(void)
 {
-	t_stack	*s;
+	t_stack	*stack;
 
-	s = malloc(sizeof(t_stack));
-	if (!s)
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
 		return (NULL);
-	s->top = NULL;
-	s->size = 0;
-	return (s);
+	stack->top = NULL;
+	stack->size = 0;
+	return (stack);
 }
 
 // Insere um nó no TOPO da stack. Usado no parsing para construir a stack a.
-void	stack_push_top(t_stack *s, t_node *node)
+void	stack_push_top(t_stack *stack, t_node *node)
 {
-	if (!s || !node)
+	if (!stack || !node)
 		return ;
 
-	node->next = s->top;
-	s->top = node;
-	s->size++;
+	node->next = stack->top;
+	stack->top = node;
+	stack->size++;
 }
 
 // Liberta todos os nós de uma stack e a própria stack.
-void	stack_free(t_stack *s)
+void	stack_free(t_stack *stack)
 {
 	t_node	*tmp;
 
-	if (!s)
+	if (!stack)
 		return ;
-	while (s->top)
+	while (stack->top)
 	{
-		tmp = s->top;
-		s->top = s->top->next;
+		tmp = stack->top;
+		stack->top = stack->top->next;
 		free(tmp);
 	}
-	free(s);
+	free(stack);
 }
 
 // Liberta tudo o que está no t_data.
