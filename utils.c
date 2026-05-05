@@ -1,99 +1,86 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/15 20:11:18 by cbarbosa          #+#    #+#             */
-/*   Updated: 2026/05/04 13:15:45 by cbarbosa         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-void	ft_bzero(void *s, size_t n)
+// Escreve uma string num file descriptor. - Eles dizem In case of error, it must display "Error" followed by a \n on the standard error.
+void	ft_putstr_fd(char *str, int fd)
 {
-	ft_memset(s, 0, n);
-}
+	int	i;
 
-static int	ft_count_words(const char *str, char c)
-{
-	size_t	i;
-	size_t	count;
-
-	i = 0;
-	count = 0;
 	if (!str)
+		return ;
+	i = 0;
+	while (str[i])
+	{
+		write(fd, &str[i], 1);
+		i++;
+	}
+}
+// Verifica se o char é um dígito.
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
+/*
+Converte string para int com validação completa.
+Retorna 1 se válido, 0 se erro (não é inteiro, overflow - questao do INT_MAX, chars inválidos).
+O valor é guardado em *result.
+*/
+int	ft_atoi_safe(char *str, int *out)
+{
+	long	result;
+	int		sign;
+	int		i;
+
+	if (!str || !*str)
+		return (0);
+	result = 0;
+	sign = 1;
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	if (!str[i])
 		return (0);
 	while (str[i])
 	{
-		while (str[i] && str[i] == c)
-			i++;
-		if (str[i])
-			count++;
-		while (str[i] && str[i] != c)
-			i++;
-	}
-	return (count);
-}
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
 
-static char	*ft_get_word(const char *str, char c)
-{
-	size_t	i;
-	size_t	j;
-	char	*word;
+		result = result * 10 + (str[i] - '0');
 
-	i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	word = malloc(sizeof(char) * (i + 1));
-	if (!word)
-		return (NULL);
-	j = 0;
-	while (j < i)
-	{
-		word[j] = str[j];
-		j++;
-	}
-	word[j] = '\0';
-	return (word);
-}
-
-static void	ft_free(char **new, int x)
-{
-	while (x >= 0)
-	{
-		free(new[x]);
-		x--;
-	}
-	free(new);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**new;
-	size_t	i;
-	size_t	words;
-
-	if (!s)
-		return (NULL);
-	words = ft_count_words(s, c);
-	new = malloc(sizeof(char *) * (words + 1));
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (i < words)
-	{
-		while (*s && *s == c)
-			s++;
-		new[i] = ft_get_word(s, c);
-		if (!new)
-			return (ft_free(new, i), NULL);
-		while (*s && *s != c)
-			s++;
+		if ((sign == 1 && result > INT_MAX)
+			|| (sign == -1 && -result < INT_MIN))
+			return (0);
 		i++;
 	}
-	new[i] = NULL;
-	return (new);
+	*out = (int)(result * sign);
+	return (1);
+}
+
+int	has_duplicate(t_stack *s, int value)
+{
+	t_node	*temp;
+
+	temp = s->top;
+	while (temp)
+	{
+		if (temp->value == value)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+}
+void	print_stack(t_stack *s)
+{
+	t_node *temp;
+	
+	temp = s->top;
+	while (temp)
+	{
+		printf("%d ", temp->value);
+		temp = temp->next;
+	}
+	printf("\n");
 }

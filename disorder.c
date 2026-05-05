@@ -1,0 +1,32 @@
+#include "push_swap.h"
+
+double	compute_disorder(t_stack *s)
+{
+	t_node	*i;
+	t_node	*j;
+	int		mistakes;
+	int		total;
+
+	if (!s || s->size < 2)
+		return (0.0);
+	mistakes = 0;
+	total = 0;
+	i = s->top;
+	while (i)
+	{
+		j = i->next;
+		while (j)
+		{
+			if (i->value > j->value)
+				mistakes++;
+			total++;
+			j = j->next;
+		}
+		i = i->next;
+	}
+	return ((double)mistakes / total);
+}
+/*
+Para uma stack: 1 2 3 eles definem pares por (1,2) (1,3) (2,3) e nao (1,2)(2,3)
+Resultado entre 0.0 (ordenada) e 1.0 (nao ordenado).
+*/

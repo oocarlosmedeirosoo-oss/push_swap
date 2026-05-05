@@ -1,67 +1,84 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/08 17:46:03 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/04 13:32:42 by cbarbosa         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
+# include <stdlib.h>
 # include <limits.h>
+# include <stdio.h>
 
+// Nodes para indexacao
+typedef struct s_node
+{
+	int				value;
+	int				index;
+	struct s_node	*next;
+} t_node;
+
+// Stack com ponteiro para o topo
 typedef struct s_stack
 {
-    int             data;
-    struct s_stack  *next;
-}   t_stack;
+	int		size;
+	t_node	*top;
+}	t_stack;
 
-void custom_sort(t_stack **a, t_stack **b);
+// Struct principal que viaja por todo o programa - STACKS A e B
+typedef struct s_data
+{
+	t_stack	*a;
+	t_stack	*b;
+}	t_stacks;
 
+// stack_init.c
+t_node	*node_new(int value);
+t_stack	*stack_new(void);
+void	stack_push_top(t_stack *s, t_node *node);
+void	stack_free(t_stack *s);
+void	data_free(t_stacks *data);
 
-// ope_swap_push.c - 5 funcions
-void	sa(t_stack **a);
-void	sb(t_stack **b);
-void	ss(t_stack **a, t_stack **b);
-void	pa(t_stack **a, t_stack **b);
-void	pb(t_stack **a, t_stack **b);
+// stack_utils.c
+int		is_sorted(t_stack *s);
+void	assign_indices(t_stack *s);
+int		find_min_pos(t_stack *s);
+int		get_size(t_stack *s);
 
-// ope_rotate.c - 5 funcions
-void	ra(t_stack **a, t_stack **b);
-void	rb(t_stack **a, t_stack **b);
-void	rr(t_stack **a, t_stack **b);
-void	rra(t_stack **a);
-void	rrb(t_stack **a, t_stack **b);
+// parse.c
+t_stacks	*parse_args(int argc, char **argv);
+void		ft_error(t_stacks *data);
 
-// lst_utils.c - 2 funcions
-void add_back(t_stack **head, const char *data);
-size_t     ft_lstsize(t_stack *lst);
+// ops_swap.c
+void	sa(t_stacks *data);
+void	sb(t_stacks *data);
+void	ss(t_stacks *data);
 
-//utils.c - 5 funcions (includding static)
-void    ft_bzero(void *s, size_t n);
-char    **ft_split(char const *s, char c);
+// ops_push.c
+void	pa(t_stacks *data);
+void	pb(t_stacks *data);
 
-// veri_utils.c - 5 funcions
-int     ft_isdigit(int c);
-char    *ft_strchr(const char *s, int c);
-int     ft_atoi(const char *nptr);
-void    *ft_memset(void *s, int c, size_t n);
-void    *ft_calloc(size_t nmemb, size_t size);
+// ops_rotate.c
+void	ra(t_stacks *data);
+void	rb(t_stacks *data);
+void	rr(t_stacks *data);
 
-// verifications.c
-void    rrr(t_stack **a, t_stack **b);
-float   ft_disorder_metric(t_stack *a);
-int     check_valid_argv(int argc, char const **argv, t_stack **a);
-int     int_repeated(t_stack *a);
+// ops_rrotate.c
+void	rra(t_stacks *data);
+void	rrb(t_stacks *data);
+void	rrr(t_stacks *data);
 
+// Estrategias
+void	sort_simple(t_stacks *data);   // insertion / selection
+void	sort_medium(t_stacks *data);   // chunk
+void	sort_complex(t_stacks *data);  // radix
+void	sort_adaptive(t_stacks *data); // depois
 
+// disorder.c
+double	compute_disorder(t_stack *s);
+
+// utils.c
+int		ft_atoi_safe(char *str, int *out);
+int		ft_isdigit(int c);
+void	ft_putstr_fd(char *s, int fd);
+int		has_duplicate(t_stack *s, int value);
+void	print_stack(t_stack *s);
+int		find_max_pos(t_stack *s);
 
 #endif
