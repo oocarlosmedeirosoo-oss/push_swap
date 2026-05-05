@@ -1,3 +1,4 @@
+Atualizar esta parte
 Chapter VI
 Mandatory part
 // VI.1 Group project requirements
