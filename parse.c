@@ -39,3 +39,10 @@ void	ft_error(t_stacks *data)
 	write(2, "Error\n", 6);
 	exit(1);
 }
+
+/*
+Errors include, for example:
+Arguments that are not integers
+Integers outside the valid range
+Duplicate values.
+*/

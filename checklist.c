@@ -179,8 +179,10 @@ prompt back.
 
 In case of error, it must display "Error" followed by a \n on the standard error.
 
-Errors include, for example:
-arguments that are not integers, integers outside the valid range, or duplicate values.
+//Errors include, for example:
+//Arguments that are not integers
+//Integers outside the valid range
+//Duplicate values.
 
 
 
