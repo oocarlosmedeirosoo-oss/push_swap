@@ -31,15 +31,15 @@ typedef struct s_data
 // stack_init.c
 t_node	*node_new(int value);
 t_stack	*stack_new(void);
-void	stack_push_top(t_stack *s, t_node *node);
-void	stack_free(t_stack *s);
+void	stack_push_top(t_stack *stack, t_node *node);
+void	stack_free(t_stack *stack);
 void	data_free(t_stacks *data);
 
 // stack_utils.c
-int		is_sorted(t_stack *s);
-void	assign_indices(t_stack *s);
-int		find_min_pos(t_stack *s);
-int		get_size(t_stack *s);
+int		is_sorted(t_stack *stack);
+void	assign_indices(t_stack *stack);
+int		find_min_pos(t_stack *stack);
+int		get_size(t_stack *stack);
 
 // parse.c
 t_stacks	*parse_args(int argc, char **argv);
