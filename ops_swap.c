@@ -36,3 +36,5 @@ void	ss(t_stacks *data)
 	swap_top(data->b);
 	write(1, "ss\n", 3);	
 }
+
+static void swap()

@@ -1,16 +1,16 @@
 #include "push_swap.h"
 
 // O topo da stack passa a ser o fundo. Utilizacao de static para o codigo ficar mais limpo.
-static void	rotate(t_stack *s)
+static void	rotate(t_stack *stack)
 {
 	t_node	*first;
 	t_node	*last;
 
-	if (!s || s->size < 2)
+	if (!stack || stack->size < 2)
 		return ;
-	first = s->top;
-	s->top = first->next;
-	last = s->top;
+	first = stack->top;
+	stack->top = first->next;
+	last = stack->top;
 	while (last->next)
 		last = last->next;
 	last->next = first;

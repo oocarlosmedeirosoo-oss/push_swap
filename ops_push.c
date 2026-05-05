@@ -3,14 +3,14 @@
 /* Remove o nó do topo da stack src. Utilizacao de static para o codigo ficar mais limpo*/
 static void	push(t_stack *src, t_stack *dest)
 {
-	t_node	*tmp;
+	t_node	*temp;
 
 	if (!src || src->size == 0)
 		return ;
-	tmp = src->top;
-	src->top = tmp->next;
-	tmp->next = dest->top;
-	dest->top = tmp;
+	temp = src->top;
+	src->top = temp->next;
+	temp->next = dest->top;
+	dest->top = temp;
 	src->size--;
 	dest->size++;
 }
@@ -30,4 +30,3 @@ void	pb(t_stacks *data)
 	push(data->a, data->b);
 	write (1, "pb\n", 3);
 }
-
