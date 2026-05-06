@@ -213,18 +213,7 @@ In the following cases:
 
 ## AI Usage
 
-We started developing the project on our own. However, we weren't very precise, as we lacked concepts such as Insertion, Chunk Sort, Radix Sort, Algorithmic Complexity, etc. Therefore, to develop this project, we used AI tools to:
-
-* Clarify algorithmic concepts (radix, chunking, complexity)
-* Review code structure and correctness
-* Provide step-by-step explanations of pointer manipulation
-
-All generated content was:
-
-* Fully reviewed
-* Understood before integration
-* Tested manually and through debugging
-
-No code was blindly copied; all implementations were adapted and validated.
+* Clarify algorithmic concepts (radix, chunking, complexity).
+* Used to help write this Readme.
 
 ---

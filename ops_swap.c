@@ -16,22 +16,25 @@ static void	swap_top(t_stack *stack)
 }
 //Eles dizem Operations must be separated by a \n and nothing else.
 // Swap the first two elements at the top of stack a.
-void	sa(t_stacks *data)
+void	sa(t_stacks *data, int print)
 {
 	swap_top(data->a);
-	write(1, "sa\n", 3);
+	if (print)
+		write(1, "sa\n", 3);
 }
 // Swap the first two elements at the top of stack b.
-void	sb(t_stacks *data)
+void	sb(t_stacks *data, int print)
 {
-	swap_top(data->a);
-	write(1, "sb\n", 3);
+	swap_top(data->b);
+	if (print)
+		write(1, "sb\n", 3);
 }
 
 // Swap sa and sb at the same time.
-void	ss(t_stacks *data)
+void	ss(t_stacks *data, int print)
 {
 	swap_top(data->a);
 	swap_top(data->b);
-	write(1, "ss\n", 3);	
+	if (print)
+		write(1, "ss\n", 3);
 }

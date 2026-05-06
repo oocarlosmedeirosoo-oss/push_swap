@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptative.c                                  :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:49:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:49:29 by mifranci         ###   ########.fr       */
+/*   Created: 2026/03/09 14:21:22 by mifranci          #+#    #+#             */
+/*   Updated: 2026/03/19 00:35:18 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_adaptive(t_stacks *data, int print, t_bench_stats *bench)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (bench->disorder < 0.2)
-	{
-		ft_printf("This one is simple\n");
-		sort_simple(data, print, bench);
-	}
-	else if (bench->disorder < 0.5)
-	{
-		ft_printf("This one is medium\n");
-		sort_medium(data, print, bench);
-	}
-	else
-	{
-		ft_printf("This one is complex\n");
-		sort_complex(data, print, bench);
-	}
+	if (!(lst))
+		return ;
+	del(lst->content);
+	free(lst);
 }
+
+/*#include <stdio.h>
+int main()
+{
+	t_list *node = ft_lstnew(malloc(5));
+	ft_lstdelone(node, free);
+	return (0);
+}*/

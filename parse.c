@@ -24,7 +24,7 @@ t_stacks	*parse_args(int argc, char **argv)
 		new = node_new(value);
 		if (!new)
 			return (ft_error(data), NULL);
-		stack_push_top(data->a, new);
+		stack_addback(data->a, new);
 	}
 	return (data);
 }

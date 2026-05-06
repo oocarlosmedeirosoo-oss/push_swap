@@ -80,8 +80,8 @@ void	print_stack(t_stack *stack)
 	temp = stack->top;
 	while (temp)
 	{
-		printf("%d ", temp->value);
+		ft_printf("%d ", temp->value);
 		temp = temp->next;
 	}
-	printf("\n");
+	ft_printf("\n");
 }

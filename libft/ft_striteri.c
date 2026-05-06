@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptative.c                                  :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:49:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:49:29 by mifranci         ###   ########.fr       */
+/*   Created: 2026/03/06 13:37:06 by mifranci          #+#    #+#             */
+/*   Updated: 2026/04/17 13:45:09 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_adaptive(t_stacks *data, int print, t_bench_stats *bench)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	if (bench->disorder < 0.2)
+	int		i;
+
+	i = 0;
+	while (s[i])
 	{
-		ft_printf("This one is simple\n");
-		sort_simple(data, print, bench);
-	}
-	else if (bench->disorder < 0.5)
-	{
-		ft_printf("This one is medium\n");
-		sort_medium(data, print, bench);
-	}
-	else
-	{
-		ft_printf("This one is complex\n");
-		sort_complex(data, print, bench);
+		f(i, &s[i]);
+		i++;
 	}
 }
+
+/*int main()
+{
+	char res[] = "1234";
+	ft_striteri(res, ft_subchr);
+	printf("res = %s\n", res);
+	ft_striteri(res, ft_showindex);
+	printf("res = %s\n", res);
+	return 0;
+}*/

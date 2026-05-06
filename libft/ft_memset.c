@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptative.c                                  :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:49:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:49:29 by mifranci         ###   ########.fr       */
+/*   Created: 2026/02/23 12:54:44 by mifranci          #+#    #+#             */
+/*   Updated: 2026/04/14 17:19:05 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_adaptive(t_stacks *data, int print, t_bench_stats *bench)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	if (bench->disorder < 0.2)
-	{
-		ft_printf("This one is simple\n");
-		sort_simple(data, print, bench);
-	}
-	else if (bench->disorder < 0.5)
-	{
-		ft_printf("This one is medium\n");
-		sort_medium(data, print, bench);
-	}
-	else
-	{
-		ft_printf("This one is complex\n");
-		sort_complex(data, print, bench);
-	}
+	char	*ptr;
+
+	ptr = s;
+	while (n-- > 0)
+		*ptr++ = c;
+	return (s);
 }
+
+/*#include <stdio.h>
+int main()
+{
+	char ar[5];
+	ft_memset((void *)ar, 48, 3);
+	printf("res = %s\n", ar);
+	return 0;
+}*/

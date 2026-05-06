@@ -1,13 +1,13 @@
 #include "push_swap.h"
 
 // Verifica se a stack está ordenada m > M, retorna 1 se ordenada, 0 se não.
-int	is_sorted(t_stack *s)
+int	is_sorted(t_stack *stack)
 {
 	t_node	*tmp;
 
-	if (!s || s->size < 2)
+	if (!stack || stack->size < 2)
 		return (1);
-	tmp = s->top;
+	tmp = stack->top;
 	while (tmp->next)
 	{
 		if (tmp->value > tmp->next->value)
@@ -18,16 +18,16 @@ int	is_sorted(t_stack *s)
 }
 
 // Retorna a posição (0 = topo) do elemento com valor mínimo.
-int	find_min_pos(t_stack *s)
+int	find_min_pos(t_stack *stack)
 {
 	t_node	*tmp;
 	int		min;
 	int		pos;
 	int		i;
 
-	if (!s || s->size == 0)
+	if (!stack || stack->size == 0)
 		return (-1);
-	tmp = s->top;
+	tmp = stack->top;
 	min = tmp->value;
 	pos = 0;
 	i = 0;
@@ -45,65 +45,65 @@ int	find_min_pos(t_stack *s)
 }
 
 // Retorna a posição (0 = topo) do elemento com valor máximo.
-int	find_max_pos(t_stack *s)
+int	find_max_pos(t_stack *stack)
 {
-	t_node	*tmp;
+	t_node	*temp;
 	int		max;
 	int		pos;
 	int		i;
 
-	if (!s || s->size == 0)
+	if (!stack || stack->size == 0)
 		return (-1);
-	tmp = s->top;
-	max = tmp->value;
+	temp = stack->top;
+	max = temp->value;
 	pos = 0;
 	i = 0;
-	while (tmp)
+	while (temp)
 	{
-		if (tmp->value > max)
+		if (temp->value > max)
 		{
-			max = tmp->value;
+			max = temp->value;
 			pos = i;
 		}
-		tmp = tmp->next;
+		temp = temp->next;
 		i++;
 	}
 	return (pos);
 }
 
 // Retorna o índice normalizado do nó na posição pos (0 = topo).
-int	get_index_at(t_stack *s, int pos)
+int	get_index_at(t_stack *stack, int pos)
 {
-	t_node	*tmp;
+	t_node	*temp;
 	int		i;
 
-	if (!s || pos < 0 || pos >= s->size)
+	if (!stack || pos < 0 || pos >= stack->size)
 		return (-1);
-	tmp = s->top;
+	temp = stack->top;
 	i = 0;
 	while (i < pos)
 	{
-		tmp = tmp->next;
+		temp = temp->next;
 		i++;
 	}
-	return (tmp->index);
+	return (temp->index);
 }
 
 // Atribui índices 0..n-1 a cada nó com base na ordem dos valores.
-void	assign_indices(t_stack *s)
+void	assign_indices(t_stack *stack)
 {
 	t_node	*i;
 	t_node	*j;
 	int		index;
 
-	if (!s)
+	if (!stack)
 		return ;
 
-	i = s->top;
+	i = stack->top;
 	while (i)
 	{
 		index = 0;
-		j = s->top;
+		j = stack->top;
 		while (j)
 		{
 			if (j->value < i->value)

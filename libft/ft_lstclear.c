@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptative.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:49:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:49:29 by mifranci         ###   ########.fr       */
+/*   Created: 2026/03/09 15:27:50 by mifranci          #+#    #+#             */
+/*   Updated: 2026/03/12 13:23:39 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	sort_adaptive(t_stacks *data, int print, t_bench_stats *bench)
+#include "libft.h"
+//#include <stdio.h>
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if (bench->disorder < 0.2)
+	t_list	*tmp;
+
+	if (!lst || !*lst)
+		return ;
+	while (*lst != NULL)
 	{
-		ft_printf("This one is simple\n");
-		sort_simple(data, print, bench);
+		tmp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = tmp;
 	}
-	else if (bench->disorder < 0.5)
-	{
-		ft_printf("This one is medium\n");
-		sort_medium(data, print, bench);
-	}
-	else
-	{
-		ft_printf("This one is complex\n");
-		sort_complex(data, print, bench);
-	}
+	*lst = NULL;
 }

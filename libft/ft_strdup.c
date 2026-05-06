@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptative.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:49:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:49:29 by mifranci         ###   ########.fr       */
+/*   Created: 2026/03/03 15:11:49 by mifranci          #+#    #+#             */
+/*   Updated: 2026/04/17 16:16:36 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_adaptive(t_stacks *data, int print, t_bench_stats *bench)
+char	*ft_strdup(const char *str)
 {
-	if (bench->disorder < 0.2)
+	char	*ptr;
+	size_t	i;
+
+	if (!(str))
+		return (NULL);
+	ptr = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(str))
 	{
-		ft_printf("This one is simple\n");
-		sort_simple(data, print, bench);
+		ptr[i] = str[i];
+		i++;
 	}
-	else if (bench->disorder < 0.5)
-	{
-		ft_printf("This one is medium\n");
-		sort_medium(data, print, bench);
-	}
-	else
-	{
-		ft_printf("This one is complex\n");
-		sort_complex(data, print, bench);
-	}
+	ptr[i] = '\0';
+	return (ptr);
 }
+
+/* #include <stdio.h>
+int main()
+{
+	char *c = ft_strdup(NULL);
+	printf("%s", c);
+} */

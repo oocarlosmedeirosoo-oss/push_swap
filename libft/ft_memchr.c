@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptative.c                                  :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:49:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:49:29 by mifranci         ###   ########.fr       */
+/*   Created: 2026/02/25 14:38:05 by mifranci          #+#    #+#             */
+/*   Updated: 2026/03/19 01:40:22 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	sort_adaptive(t_stacks *data, int print, t_bench_stats *bench)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (bench->disorder < 0.2)
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)s;
+	while (n-- > 0)
 	{
-		ft_printf("This one is simple\n");
-		sort_simple(data, print, bench);
+		if (*ptr == (unsigned char)c)
+			return ((void *)ptr);
+		ptr++;
 	}
-	else if (bench->disorder < 0.5)
-	{
-		ft_printf("This one is medium\n");
-		sort_medium(data, print, bench);
-	}
-	else
-	{
-		ft_printf("This one is complex\n");
-		sort_complex(data, print, bench);
-	}
+	return (NULL);
 }
+
+/*int main()
+{
+	char s64[] = {0, 1, 2 ,3 ,4 ,5};
+	char *lok = ft_memchr(s64, 3, 4);
+	printf("ft_memchr = >%p<\n", lok);
+	printf("ft_memchr = >%i<\n", lok[0]);
+	return 0;
+}
+*/

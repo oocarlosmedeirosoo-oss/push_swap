@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptative.c                                  :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:49:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:49:29 by mifranci         ###   ########.fr       */
+/*   Created: 2026/03/09 06:38:35 by mifranci          #+#    #+#             */
+/*   Updated: 2026/03/09 15:19:44 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	sort_adaptive(t_stacks *data, int print, t_bench_stats *bench)
+#include "libft.h"
+//#include <stdio.h>
+t_list	*ft_lstnew(void *content)
 {
-	if (bench->disorder < 0.2)
-	{
-		ft_printf("This one is simple\n");
-		sort_simple(data, print, bench);
-	}
-	else if (bench->disorder < 0.5)
-	{
-		ft_printf("This one is medium\n");
-		sort_medium(data, print, bench);
-	}
-	else
-	{
-		ft_printf("This one is complex\n");
-		sort_complex(data, print, bench);
-	}
+	t_list	*node;
+
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }
+
+/*int main(int argc, char const *argv[])
+{
+	t_list *node;
+
+	char *c = "hello";
+	node = ft_lstnew(c);
+	printf("content = %s\n", (char *)node->content);
+	free(node);
+	return 0;
+}*/

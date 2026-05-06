@@ -21,22 +21,25 @@ static void	reverse_rotate(t_stack *stack)
 }
 //Eles dizem Operations must be separated by a \n and nothing else.
 //  Shift down all elements of stack a by one.
-void	rra(t_stacks *data)
+void	rra(t_stacks *data, int print)
 {
 	reverse_rotate(data->a);
-	write(1, "rra\n", 4);
+	if (print)
+		write(1, "rra\n", 4);
 }
 //  Shift down all elements of stack b by one.
-void	rrb(t_stacks *data)
+void	rrb(t_stacks *data, int print)
 {
 	reverse_rotate(data->b);
-	write(1, "rrb\n", 4);
+	if (print)
+		write(1, "rrb\n", 4);
 }
 
 // Shift rra and rrb at the same time.
-void	rrr(t_stacks *data)
+void	rrr(t_stacks *data, int print)
 {
 	reverse_rotate(data->a);
 	reverse_rotate(data->b);
-	write(1, "rrr\n", 4);
+	if (print)
+		write(1, "rrr\n", 4);
 }

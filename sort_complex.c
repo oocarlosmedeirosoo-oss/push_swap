@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 // Radix Sort
-void	sort_complex(t_stacks *data)
+void	sort_complex(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	int	size;
 	int	max_bits;
@@ -19,13 +19,25 @@ void	sort_complex(t_stacks *data)
 		while (j < size)
 		{
 			if (((data->a->top->index >> i) & 1) == 0)
-				pb(data);
+			{
+				pb(data, print);
+				bench_stats->pb++;
+				bench_stats->total_ops++;
+			}
 			else
-				ra(data);
+			{
+				ra(data, print);
+				bench_stats->ra++;
+				bench_stats->total_ops++;
+			}
 			j++;
 		}
 		while (data->b->size > 0)
-			pa(data);
+		{
+			pa(data, print);
+			bench_stats->pa++;
+			bench_stats->total_ops++;
+		}
 		i++;
 	}
 }

@@ -18,15 +18,17 @@ static void	push(t_stack *src, t_stack *dest)
 //Eles dizem Operations must be separated by a \n and nothing else.
 
 // pa: tira o topo de b e coloca no topo de a.
-void	pa(t_stacks *data)
+void	pa(t_stacks *data, int print)
 {
 	push(data->b, data->a);
-	write (1, "pa\n", 3);
+	if (print)
+		write (1, "pa\n", 3);
 }
 
 // pb: tira o topo de a e coloca no topo de b.
-void	pb(t_stacks *data)
+void	pb(t_stacks *data, int print)
 {
 	push(data->a, data->b);
-	write (1, "pb\n", 3);
+	if (print)
+		write (1, "pb\n", 3);
 }
