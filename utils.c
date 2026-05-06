@@ -24,6 +24,7 @@ Converte string para int com validação completa.
 Retorna 1 se válido, 0 se erro (não é inteiro, overflow - questao do INT_MAX, chars inválidos).
 O valor é guardado em *result.
 */
+#include <stdio.h>
 int	ft_atoi_safe(char *str, int *value)
 {
 	long	result;

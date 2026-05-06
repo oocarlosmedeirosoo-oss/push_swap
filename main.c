@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 21:22:55 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:02:53 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int	main(int argc, char **argv)
 	bench = ini_bench();
 	
 	data = parse_args(argc, argv);
+	print_stack(data->a);
 	if (!data)
 		return (1);
 	if (is_sorted(data->a))
