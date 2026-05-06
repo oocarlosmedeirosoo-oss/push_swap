@@ -24,7 +24,7 @@ Converte string para int com validação completa.
 Retorna 1 se válido, 0 se erro (não é inteiro, overflow - questao do INT_MAX, chars inválidos).
 O valor é guardado em *result.
 */
-int	ft_atoi_safe(char *str, int *out)
+int	ft_atoi_safe(char *str, int *value)
 {
 	long	result;
 	int		sign;
@@ -55,15 +55,15 @@ int	ft_atoi_safe(char *str, int *out)
 			return (0);
 		i++;
 	}
-	*out = (int)(result * sign);
+	*value = (int)(result * sign);
 	return (1);
 }
 
-int	has_duplicate(t_stack *s, int value)
+int	has_duplicate(t_stack *stack, int value)
 {
 	t_node	*temp;
 
-	temp = s->top;
+	temp = stack->top;
 	while (temp)
 	{
 		if (temp->value == value)
@@ -73,11 +73,11 @@ int	has_duplicate(t_stack *s, int value)
 	return (0);
 }
 
-void	print_stack(t_stack *s)
+void	print_stack(t_stack *stack)
 {
 	t_node	*temp;
 
-	temp = s->top;
+	temp = stack->top;
 	while (temp)
 	{
 		printf("%d ", temp->value);

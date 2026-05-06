@@ -30,11 +30,21 @@ t_stack	*stack_new(void)
 // Insere um nó no TOPO da stack. Usado no parsing para construir a stack a.
 void	stack_push_top(t_stack *stack, t_node *node)
 {
-	if (!stack || !node)
+	t_node *temp;
+
+	if (!node)
 		return ;
 
-	node->next = stack->top;
-	stack->top = node;
+	if (!stack->top)
+	{
+		stack->top = node;
+		stack->size++;
+		return ;
+	}
+	temp = stack->top;
+	while (temp)
+		temp = temp->next;
+	temp->next = node;	
 	stack->size++;
 }
 
