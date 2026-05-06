@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 22:36:46 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/06 23:28:59 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int	main(int argc, char **argv)
 	t_flags_values	*flags;
 	t_bench_stats		*bench;
 
+	if (argc < 2)
+		return (0);
 	flags = NULL;
 	bench = NULL;
 	argv++; // Skip program name

@@ -33,6 +33,7 @@ void handle_flag(t_flags_values *flags_values, char *argv)
 		flags_values->bench += 1;
 	else
 	{
+		ft_printf("Error\n");
 		free(flags_values);
 		exit(1);
 	}
