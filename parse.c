@@ -4,7 +4,6 @@ t_stacks	*parse_args(int argc, char **argv)
 {
 	t_stacks	*data;
 	int			value;
-	int			i;
 	t_node		*new;
 
 	if (argc < 2)
@@ -16,10 +15,9 @@ t_stacks	*parse_args(int argc, char **argv)
 	data->b = stack_new();
 	if (!data->a || !data->b)
 		return (ft_error(data), NULL);
-	i = argc - 1;
-	while (i > 0)
+	while (*argv)
 	{
-		if (!ft_atoi_safe(argv[i], &value))
+		if (!ft_atoi_safe(*argv++, &value))
 			return (ft_error(data), NULL);
 		if (has_duplicate(data->a, value))
 			return (ft_error(data), NULL);
@@ -27,7 +25,6 @@ t_stacks	*parse_args(int argc, char **argv)
 		if (!new)
 			return (ft_error(data), NULL);
 		stack_push_top(data->a, new);
-		i--;
 	}
 	return (data);
 }

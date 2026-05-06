@@ -93,5 +93,4 @@ int		find_max_pos(t_stack *s);
 
 
 t_flags_values	*check_flags(char **argv);
-
 #endif
