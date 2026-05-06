@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 22:02:53 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:36:46 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,23 +80,22 @@ void choose_what_to_do(t_stacks *data, t_flags_values *flags, t_bench_stats *ben
 		if (flags->simple)
 		{
 			sort_simple(data, print, bench);
-			bench->strategy = "simple";
+			bench->strategy = "Simple / O(n^2)";
 		}
 		else if (flags->medium)
 		{
 			
 			sort_medium(data, print, bench);
-			bench->strategy = "medium";
+			bench->strategy = "Medium / O(n√n)";
 		}
 		else if (flags->complex)
 		{
 			sort_complex(data, print, bench);
-			bench->strategy = "complex";
+			bench->strategy = "Complex / O(n log n)";
 		}
 		else
 		{
 			sort_adaptive(data, print, bench);
-			bench->strategy = "adaptive";
 		}
 	}
 }
@@ -105,7 +104,11 @@ void print_bench_stats(t_bench_stats *bench)
 {
 	if (!bench)
 		return;
-	ft_printf("[bench] disorder: %i.%i%%\n", bench->disorder / 100, bench->disorder % 100);
+	ft_printf("[bench] disorder: %i.", bench->disorder / 100);
+	if ((bench->disorder % 100) == 0)
+		ft_printf("00%%\n");
+	else
+		ft_printf("%i%%\n", bench->disorder % 100);
 	ft_printf("[bench] strategy: %s\n", bench->strategy);
 	ft_printf("[bench] total_ops: %d\n", bench->total_ops);
 	ft_printf("[bench] sa: %d, sb: %d, ss: %d, pa: %d, pb: %d\n", bench->sa, bench->sb, bench->ss, bench->pa, bench->pb);
@@ -128,7 +131,6 @@ int	main(int argc, char **argv)
 	bench = ini_bench();
 	
 	data = parse_args(argc, argv);
-	print_stack(data->a);
 	if (!data)
 		return (1);
 	if (is_sorted(data->a))

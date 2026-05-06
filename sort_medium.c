@@ -1,14 +1,20 @@
 #include "push_swap.h"
 
 // Chunk Based Sort
-#include <math.h>
+static int ft_sqrt(int num)
+{
+	int i = 1;
+	while (i * i < num)
+		i++;
+	return i;
+}
 
 void	sort_medium(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	int	chunk;
 	int	i;
 
-	chunk = sqrt(data->a->size);
+	chunk = ft_sqrt(data->a->size);
 	i = 0;
 	while (data->a->size > 0)
 	{
