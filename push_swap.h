@@ -6,6 +6,16 @@
 # include <limits.h>
 # include <stdio.h>
 
+// structs para flags
+typedef struct s_flags_values
+{
+	int simple;
+	int medium;
+	int complex;
+	int adaptive;
+	int bench;
+}	t_flags_values;
+
 // Nodes para indexacao
 typedef struct s_node
 {
@@ -39,7 +49,7 @@ void	data_free(t_stacks *data);
 int		is_sorted(t_stack *stack);
 void	assign_indices(t_stack *stack);
 int		find_min_pos(t_stack *stack);
-int		get_size(t_stack *stack);
+/* int		get_size(t_stack *stack); */
 
 // parse.c
 t_stacks	*parse_args(int argc, char **argv);
@@ -80,5 +90,8 @@ void	ft_putstr_fd(char *s, int fd);
 int		has_duplicate(t_stack *s, int value);
 void	print_stack(t_stack *s);
 int		find_max_pos(t_stack *s);
+
+
+t_flags_values	*check_flags(char **argv);
 
 #endif

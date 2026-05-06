@@ -12,6 +12,7 @@ t_stacks	*parse_args(int argc, char **argv)
 	data = malloc(sizeof(t_stacks));
 	if (!data)
 		return (NULL);
+	
 	data->a = stack_new();
 	data->b = stack_new();
 	if (!data->a || !data->b)

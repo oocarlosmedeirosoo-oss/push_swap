@@ -1,9 +1,9 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRC	= ops_push.c ops_rotate.c ops_rrotate.c ops_swap.c parse.c sort_adaptative.c sort_complex.c sort_medium.c \
-	sort_simple.c stack_init.c stack_utils.c utils.c disorder.c main.c
+	sort_simple.c stack_init.c stack_utils.c utils.c disorder.c main.c check_flags.c
 
 OBJ	= $(SRC:.c=.o)
 
