@@ -1,17 +1,17 @@
 #include "push_swap.h"
 
-double	compute_disorder(t_stack *s)
+double	compute_disorder(t_stack *stack)
 {
 	t_node	*i;
 	t_node	*j;
 	int		mistakes;
 	int		total;
 
-	if (!s || s->size < 2)
+	if (!stack || stack->size < 2)
 		return (0.0);
 	mistakes = 0;
 	total = 0;
-	i = s->top;
+	i = stack->top;
 	while (i)
 	{
 		j = i->next;

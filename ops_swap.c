@@ -15,7 +15,6 @@ static void	swap_top(t_stack *stack)
 	stack->top = second;
 }
 //Eles dizem Operations must be separated by a \n and nothing else.
-
 // Swap the first two elements at the top of stack a.
 void	sa(t_stacks *data)
 {

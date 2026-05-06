@@ -20,7 +20,6 @@ static void	reverse_rotate(t_stack *stack)
 	stack->top = last;
 }
 //Eles dizem Operations must be separated by a \n and nothing else.
-
 //  Shift down all elements of stack a by one.
 void	rra(t_stacks *data)
 {
