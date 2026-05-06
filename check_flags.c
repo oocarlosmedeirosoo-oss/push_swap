@@ -19,6 +19,24 @@ static void init_flags_values(t_flags_values *flags_values)
 	flags_values->adaptive = 0;
 	flags_values->bench = 0;
 }
+void handle_flag(t_flags_values *flags_values, char *flag)
+{
+	if (ft_strcmp(flag, "--simple") == 0)
+		flags_values->simple += 1;
+	else if (ft_strcmp(flag, "--medium") == 0)
+		flags_values->medium += 1;
+	else if (ft_strcmp(flag, "--complex") == 0)
+		flags_values->complex += 1;
+	else if (ft_strcmp(flag, "--adaptive") == 0)
+		flags_values->adaptive += 1;
+	else if (ft_strcmp(flag, "--bench") == 0)
+		flags_values->bench += 1;
+	else
+	{
+		free(flags_values);
+		exit(1);
+	}
+}
 
 t_flags_values	*check_flags(char **argv)
 {
@@ -28,25 +46,7 @@ t_flags_values	*check_flags(char **argv)
 	init_flags_values(flags_values);
 	if (!flags_values)
 		return NULL;
-
 	while (*argv && ((*argv)[0] == '-' && (*argv)[1] == '-'))
-	{
-		if (ft_strcmp(*argv, "--simple") == 0)
-			flags_values->simple += 1;
-		else if (ft_strcmp(*argv, "--complex") == 0)
-			flags_values->complex += 1;
-		else if (ft_strcmp(*argv, "--medium") == 0)
-			flags_values->medium += 1;
-		else if (ft_strcmp(*argv, "--adaptive") == 0)
-			flags_values->adaptive += 1;
-		else if (ft_strcmp(*argv, "--bench") == 0)
-			flags_values->bench += 1;
-		else
-		{
-			free(flags_values);
-			return NULL;
-		}
-		argv++;
-	}
+		handle_flag(flags_values, *argv++);
 	return (flags_values);
 }
