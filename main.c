@@ -71,10 +71,9 @@ void choose_what_to_do(t_stacks *data, t_flags_values *flags, t_bench_stats *ben
 		sort_adaptive(data, 1, bench);
 		return ;
 	}
+	print = 1;
 	if (flags->bench == 1)
 		print = 0;
-	else
-		print = 1;
 	if (sum_flags(flags))
 	{
 		if (flags->simple)
@@ -84,7 +83,6 @@ void choose_what_to_do(t_stacks *data, t_flags_values *flags, t_bench_stats *ben
 		}
 		else if (flags->medium)
 		{
-			
 			sort_medium(data, print, bench);
 			bench->strategy = "Medium / O(n√n)";
 		}
