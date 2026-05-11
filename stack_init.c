@@ -6,19 +6,19 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 15:16:57 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 15:17:40 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:40:15 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*node_new(int value)
+t_node	*node_new(int value, t_stacks *data, t_bench_stats *bench)
 {
 	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (!node)
-		return (NULL);
+		ft_error(data, bench);
 	node->value = value;
 	node->index = 0;
 	node->next = NULL;
@@ -71,8 +71,9 @@ void	stack_free(t_stack *stack)
 	free(stack);
 }
 
-void	data_free(t_stacks *data)
+void	data_free(t_stacks *data, t_bench_stats *bench)
 {
+	free(bench);
 	if (!data)
 		return ;
 	if (data->a)

@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 16:37:21 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:34:14 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,34 +50,6 @@ t_bench_stats	*ini_bench(void)
 	return (bench);
 }
 
-void	choose_what_to_do(t_stacks *data, t_flags *flags, t_bench_stats *bench)
-{
-	int	print;
-
-	if (!flags)
-	{
-		sort_adaptive(data, 1, bench);
-		return ;
-	}
-	print = 1;
-	if (flags->bench == 1)
-		print = 0;
-	if (sum_flags(flags))
-	{
-		if (flags->simple)
-			sort_simple(data, print, bench);
-		else if (flags->medium)
-			sort_medium(data, print, bench);
-		else if (flags->complex)
-		{
-			sort_complex(data, print, bench);
-			bench->strategy = "Complex / O(n log n)";
-		}
-		else
-			sort_adaptive(data, print, bench);
-	}
-}
-
 void	print_bench_stats(t_bench_stats *bench)
 {
 	if (!bench)
@@ -110,19 +82,16 @@ int	main(int argc, char **argv)
 		flags = check_flags(argv);
 	argv += sum_flags(flags);
 	bench = ini_bench();
-	data = parse_args(argv);
+	data = parse_args(argv, bench);
 	if (!data)
 		return (1);
 	if (is_sorted(data->a))
-	{
-		data_free(data);
-		return (0);
-	}
+		return (data_free(data, bench), 0);
 	bench->disorder = (int)(compute_disorder(data->a) * 10000);
 	assign_indices(data->a);
 	choose_what_to_do(data, flags, bench);
 	if (flags && flags->bench)
 		print_bench_stats(bench);
-	data_free(data);
+	data_free(data, bench);
 	return (0);
 }

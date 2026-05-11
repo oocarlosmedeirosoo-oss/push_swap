@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 14:52:03 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 15:49:42 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:14:40 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,32 @@ void	print_stack(t_stack *stack)
 		temp = temp->next;
 	}
 	ft_printf("\n");
+}
+
+void	choose_what_to_do(t_stacks *data, t_flags *flags, t_bench_stats *bench)
+{
+	int	print;
+
+	if (!flags)
+	{
+		sort_adaptive(data, 1, bench);
+		return ;
+	}
+	print = 1;
+	if (flags->bench == 1)
+		print = 0;
+	if (sum_flags(flags))
+	{
+		if (flags->simple)
+			sort_simple(data, print, bench);
+		else if (flags->medium)
+			sort_medium(data, print, bench);
+		else if (flags->complex)
+		{
+			sort_complex(data, print, bench);
+			bench->strategy = "Complex / O(n log n)";
+		}
+		else
+			sort_adaptive(data, print, bench);
+	}
 }
