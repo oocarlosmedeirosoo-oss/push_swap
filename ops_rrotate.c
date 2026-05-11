@@ -28,9 +28,11 @@ void	rra(t_stacks *data, int print)
 		write(1, "rra\n", 4);
 }
 //  Shift down all elements of stack b by one.
-void	rrb(t_stacks *data, int print)
+void	rrb(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	reverse_rotate(data->b);
+	bench_stats->rrb++;
+	bench_stats->total_ops++;
 	if (print)
 		write(1, "rrb\n", 4);
 }

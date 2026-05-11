@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/11 14:52:03 by mifranci          #+#    #+#             */
+/*   Updated: 2026/05/11 15:49:42 by mifranci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// Escreve uma string num file descriptor. - Eles dizem In case of error, it must display "Error" followed by a \n on the standard error.
 void	ft_putstr_fd(char *str, int fd)
 {
 	int	i;
@@ -14,47 +25,30 @@ void	ft_putstr_fd(char *str, int fd)
 		i++;
 	}
 }
-// Verifica se o char é um dígito.
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-/*
-Converte string para int com validação completa.
-Retorna 1 se válido, 0 se erro (não é inteiro, overflow - questao do INT_MAX, chars inválidos).
-O valor é guardado em *result.
-*/
-#include <stdio.h>
+
 int	ft_atoi_safe(char *str, int *value)
 {
 	long	result;
 	int		sign;
-	int		i;
 
 	if (!str || !*str)
 		return (0);
 	result = 0;
 	sign = 1;
-	i = 0;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
+	if (*str == '+' || *str == '-')
+		if (*str++ == '-')
 			sign = -1;
-		i++;
-	}
-	if (!str[i])
+	if (!(*str))
 		return (0);
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (*str < '0' || *str > '9')
 			return (0);
-
-		result = result * 10 + (str[i] - '0');
-
+		result = result * 10 + (*str - '0');
 		if ((sign == 1 && result > INT_MAX)
-			|| (sign == -1 && -result < INT_MIN))
+			|| (sign == -1 && (-result) < INT_MIN))
 			return (0);
-		i++;
+		str++;
 	}
 	*value = (int)(result * sign);
 	return (1);

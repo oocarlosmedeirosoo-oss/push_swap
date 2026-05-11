@@ -76,16 +76,16 @@ void	sb(t_stacks *data, int print);
 void	ss(t_stacks *data, int print);
 
 // ops_push.c
-void	pa(t_stacks *data, int print);
-void	pb(t_stacks *data, int print);
+void	pa(t_stacks *data, int print, t_bench_stats *bench_stats);
+void	pb(t_stacks *data, int print, t_bench_stats *bench_stats);
 // ops_rotate.c
-void	ra(t_stacks *data, int print);
-void	rb(t_stacks *data, int print);
+void	ra(t_stacks *data, int print, t_bench_stats *bench_stats);
+void	rb(t_stacks *data, int print, t_bench_stats *bench_stats);
 void	rr(t_stacks *data, int print);
 
 // ops_rrotate.c
 void	rra(t_stacks *data, int print);
-void	rrb(t_stacks *data, int print);
+void	rrb(t_stacks *data, int print, t_bench_stats *bench_stats);
 void	rrr(t_stacks *data, int print);
 
 // Estrategias
@@ -105,6 +105,8 @@ int		has_duplicate(t_stack *stack, int value);
 void	print_stack(t_stack *stack);
 int		find_max_pos(t_stack *stack);
 
+
+int	ft_strcmp(const char *s1, const char *s2);
 
 t_flags_values	*check_flags(char **argv);
 #endif

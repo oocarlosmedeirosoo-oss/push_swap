@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/11 15:15:37 by mifranci          #+#    #+#             */
+/*   Updated: 2026/05/11 15:16:32 by mifranci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// Verifica se a stack está ordenada m > M, retorna 1 se ordenada, 0 se não.
 int	is_sorted(t_stack *stack)
 {
 	t_node	*tmp;
@@ -17,7 +28,6 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-// Retorna a posição (0 = topo) do elemento com valor mínimo.
 int	find_min_pos(t_stack *stack)
 {
 	t_node	*tmp;
@@ -44,7 +54,6 @@ int	find_min_pos(t_stack *stack)
 	return (pos);
 }
 
-// Retorna a posição (0 = topo) do elemento com valor máximo.
 int	find_max_pos(t_stack *stack)
 {
 	t_node	*temp;
@@ -71,7 +80,6 @@ int	find_max_pos(t_stack *stack)
 	return (pos);
 }
 
-// Retorna o índice normalizado do nó na posição pos (0 = topo).
 int	get_index_at(t_stack *stack, int pos)
 {
 	t_node	*temp;
@@ -89,7 +97,6 @@ int	get_index_at(t_stack *stack, int pos)
 	return (temp->index);
 }
 
-// Atribui índices 0..n-1 a cada nó com base na ordem dos valores.
 void	assign_indices(t_stack *stack)
 {
 	t_node	*i;
@@ -98,7 +105,6 @@ void	assign_indices(t_stack *stack)
 
 	if (!stack)
 		return ;
-
 	i = stack->top;
 	while (i)
 	{

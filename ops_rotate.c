@@ -19,16 +19,20 @@ static void	rotate(t_stack *stack)
 //Eles dizem Operations must be separated by a \n and nothing else.
 
 // Shift up all elements of stack a by one
-void	ra(t_stacks *data, int print)
+void	ra(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	rotate(data->a);
+	bench_stats->ra++;
+	bench_stats->total_ops++;
 	if (print)
 		write(1, "ra\n", 3);
 }
 // Shift up all elements of stack b by one
-void	rb(t_stacks *data, int print)
+void	rb(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	rotate(data->b);
+	bench_stats->rb++;
+	bench_stats->total_ops++;
 	if (print)
 		write(1, "rb\n", 3);
 }

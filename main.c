@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 23:28:59 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 15:50:05 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,8 @@ int	main(int argc, char **argv)
 	if ((*argv)[0] == '-' && (*argv)[1] == '-')
 		flags = check_flags(argv);
 	printf_flags_values(flags);
-	argv += sum_flags(flags);
+	argv += sum_flags(flags); 
 	bench = ini_bench();
-	
 	data = parse_args(argc, argv);
 	if (!data)
 		return (1);

@@ -6,22 +6,24 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:06 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 20:42:07 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 15:42:06 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Insertion Sort
-static void	rotate_to_top(t_stacks *data, int pos, int print, t_bench_stats *bench_stats)
+static void	rotate_to_top(t_stacks *data, int pos, int print,
+			t_bench_stats *bench_stats)
 {
-	int	size = data->a->size;
+	int	size;
 
+	size = data->a->size;
 	if (pos <= size / 2)
 	{
 		while (pos-- > 0)
 		{
-			ra(data, print);
+			ra(data, print, bench_stats);
 			bench_stats->ra++;
 			bench_stats->total_ops++;
 		}
@@ -41,17 +43,18 @@ static void	rotate_to_top(t_stacks *data, int pos, int print, t_bench_stats *ben
 void	sort_simple(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	int	pos;
+
 	while (!is_sorted(data->a))
 	{
 		pos = find_min_pos(data->a);
 		rotate_to_top(data, pos, print, bench_stats);
-		pb(data, print);
+		pb(data, print, bench_stats);
 		bench_stats->pb++;
 		bench_stats->total_ops++;
 	}
 	while (data->b->size > 0)
 	{
-		pa(data, print);
+		pa(data, print, bench_stats);
 		bench_stats->pa++;
 		bench_stats->total_ops++;
 	}
