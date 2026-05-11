@@ -6,7 +6,7 @@
 /*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:41:57 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:57:45 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/05/11 20:08:17 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double	compute_disorder(t_stack *stack)
 	if (!stack || stack->size < 2)
 		return (0.0);
 	mistakes = 0;
-	total = 0;
+	total = (stack->size * (stack->size - 1) / 2);
 	i = stack->top;
 	while (i)
 	{
@@ -31,7 +31,6 @@ double	compute_disorder(t_stack *stack)
 		{
 			if (i->value > j->value)
 				mistakes++;
-			total++;
 			j = j->next;
 		}
 		i = i->next;
