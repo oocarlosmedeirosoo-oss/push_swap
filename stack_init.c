@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 15:16:57 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:51:42 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:53:31 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

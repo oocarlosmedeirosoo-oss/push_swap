@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_medium.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 15:18:56 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:51:36 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:53:25 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
