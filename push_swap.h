@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 16:10:08 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 17:40:53 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 18:58:22 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+
+// struct pointer to flag struct and bench struct
+
 
 // bench stats
 typedef struct s_bench_stats
@@ -44,6 +47,12 @@ typedef struct s_flags
 	int	bench;
 }	t_flags;
 
+typedef struct s_pointer_bench_flag
+{
+	t_bench_stats	*bench;
+	t_flags 		*flags;
+}	t_ptr_b_f;
+
 // Nodes para indexacao
 typedef struct s_node
 {
@@ -67,11 +76,11 @@ typedef struct s_data
 }	t_stacks;
 
 // stack_init.c
-t_node		*node_new(int value, t_stacks *data, t_bench_stats *bench);
+t_node		*node_new(int value, t_stacks *data, t_ptr_b_f ptrs_b_f);
 t_stack		*stack_new(void);
 void		stack_addback(t_stack *stack, t_node *node);
 void		stack_free(t_stack *stack);
-void		data_free(t_stacks *data, t_bench_stats *bench);
+void		data_free(t_stacks *data, t_bench_stats *bench, t_flags *flags);
 
 // stack_utils.c
 int			is_sorted(t_stack *stack);
@@ -79,8 +88,8 @@ void		assign_indices(t_stack *stack);
 int			find_min_pos(t_stack *stack);
 
 // parse.c
-t_stacks	*parse_args(char **argv, t_bench_stats *bench);
-void		ft_error(t_stacks *data, t_bench_stats *bench);
+t_stacks	*parse_args(char **argv, t_ptr_b_f ptrs_b_f);
+void		ft_error(t_stacks *data, t_ptr_b_f ptrs_b_f, char **splitted);
 
 // ops_swap.c
 void		sa(t_stacks *data, int print, t_bench_stats *bench_stats);

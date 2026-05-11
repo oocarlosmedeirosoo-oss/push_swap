@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 17:34:14 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:01:58 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,22 @@ void	print_bench_stats(t_bench_stats *bench)
 		bench->ra, bench->rb, bench->rr, bench->rra, bench->rrb, bench->rrr);
 }
 
+static void	free_memmory_if_not_data(t_flags *flags, t_bench_stats *bench)
+{
+	free(flags);
+	free(bench);
+}
+
+t_ptr_b_f pointers_to_bench_flags(t_bench_stats *bench, t_flags *flags)
+{
+	t_ptr_b_f ptrs_b_f;
+
+	ptrs_b_f.bench = bench;
+	ptrs_b_f.flags = flags;
+	return (ptrs_b_f);
+}
+
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_stacks		*data;
@@ -77,21 +93,25 @@ int	main(int argc, char **argv)
 		return (0);
 	flags = NULL;
 	bench = NULL;
+	data = NULL;
 	argv++;
 	if ((*argv)[0] == '-' && (*argv)[1] == '-')
 		flags = check_flags(argv);
 	argv += sum_flags(flags);
 	bench = ini_bench();
-	data = parse_args(argv, bench);
+	if (*argv)
+		data = parse_args(argv, pointers_to_bench_flags(bench, flags));
 	if (!data)
-		return (1);
+		return (free_memmory_if_not_data(flags, bench), 1);
+	printf("TESTE1\n");
 	if (is_sorted(data->a))
-		return (data_free(data, bench), 0);
-	bench->disorder = (int)(compute_disorder(data->a) * 10000);
+		return (data_free(data, bench, flags), 0);
+	printf("TESTE2\n");
+	bench->disorder = (int)(compute_disorder(data->a) * 10000); 
 	assign_indices(data->a);
 	choose_what_to_do(data, flags, bench);
 	if (flags && flags->bench)
 		print_bench_stats(bench);
-	data_free(data, bench);
+	data_free(data, bench, flags);
 	return (0);
 }

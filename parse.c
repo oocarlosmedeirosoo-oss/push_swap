@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 15:53:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 17:39:22 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 18:59:53 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	free_split(char **splitted)
 	free(splitted);
 }
 
-static void	parse_args_helper(char **splitted, char **argv, t_stacks *data, t_bench_stats *bench)
+static void	parse_args_helper(char **splitted, char **argv, t_stacks *data, t_ptr_b_f ptrs_b_f)
 {
 	int		i;
 	t_node	*new;
@@ -36,25 +36,22 @@ static void	parse_args_helper(char **splitted, char **argv, t_stacks *data, t_be
 		i = 0;
 		splitted = ft_split(*argv++, ' ');
 		if (!*splitted)
-		{
-			free_split(splitted);
-			ft_error(data, bench);
-		}
+			ft_error(data, ptrs_b_f, splitted);
 		while (splitted[i])
 		{
 			if (!ft_atoi_safe(splitted[i], &value))
-				ft_error(data, bench);
+				ft_error(data, ptrs_b_f, splitted);
 			if (has_duplicate(data->a, value))
-				ft_error(data, bench);
-			new = node_new(value, data, bench);
+				ft_error(data, ptrs_b_f, splitted);
+			new = node_new(value, data, ptrs_b_f);
 			stack_addback(data->a, new);
 			i++;
 		}
 		free_split(splitted);
 	}
 }
-
-t_stacks	*parse_args(char **argv, t_bench_stats *bench)
+#include <stdio.h>
+t_stacks	*parse_args(char **argv, t_ptr_b_f ptrs_b_f)
 {
 	char		**splitted;
 	t_stacks	*data;
@@ -66,14 +63,16 @@ t_stacks	*parse_args(char **argv, t_bench_stats *bench)
 	data->a = stack_new();
 	data->b = stack_new();
 	if (!data->a || !data->b)
-		return (ft_error(data, bench), NULL);
-	parse_args_helper(splitted, argv, data, bench);
+		return (ft_error(data, ptrs_b_f, splitted), NULL);
+	parse_args_helper(splitted, argv, data, ptrs_b_f);
 	return (data);
 }
 
-void	ft_error(t_stacks *data, t_bench_stats *bench)
+void	ft_error(t_stacks *data, t_ptr_b_f ptrs_b_f, char **splitted)
 {
-	data_free(data, bench);
+	if (splitted)
+		free_split(splitted);
+	data_free(data, ptrs_b_f.bench, ptrs_b_f.flags);
 	write(2, "Error\n", 6);
 	exit(1);
 }
