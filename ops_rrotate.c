@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_rrotate.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/11 16:01:17 by mifranci          #+#    #+#             */
+/*   Updated: 2026/05/11 16:15:10 by mifranci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// O fundo da stack passa a ser o topo. Utilizacao de static para o codigo ficar mais limpo.
 static void	reverse_rotate(t_stack *stack)
 {
 	t_node	*prev;
@@ -19,15 +30,16 @@ static void	reverse_rotate(t_stack *stack)
 	last->next = stack->top;
 	stack->top = last;
 }
-//Eles dizem Operations must be separated by a \n and nothing else.
-//  Shift down all elements of stack a by one.
-void	rra(t_stacks *data, int print)
+
+void	rra(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	reverse_rotate(data->a);
+	bench_stats->rra++;
+	bench_stats->total_ops++;
 	if (print)
 		write(1, "rra\n", 4);
 }
-//  Shift down all elements of stack b by one.
+
 void	rrb(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	reverse_rotate(data->b);
@@ -37,11 +49,10 @@ void	rrb(t_stacks *data, int print, t_bench_stats *bench_stats)
 		write(1, "rrb\n", 4);
 }
 
-// Shift rra and rrb at the same time.
-void	rrr(t_stacks *data, int print)
+void	rrr(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
-	reverse_rotate(data->a);
-	reverse_rotate(data->b);
+	rra(data, print, bench_stats);
+	rrb(data, print, bench_stats);
 	if (print)
 		write(1, "rrr\n", 4);
 }

@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:06 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 15:42:06 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:29:09 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,30 @@ static void	rotate_to_top(t_stacks *data, int pos, int print,
 		pos = size - pos;
 		while (pos-- > 0)
 		{
-			rra(data, print);
+			rra(data, print, bench_stats);
 			bench_stats->rra++;
 			bench_stats->total_ops++;
 		}
 	}
 }
 
-void	sort_simple(t_stacks *data, int print, t_bench_stats *bench_stats)
+void	sort_simple(t_stacks *data, int print, t_bench_stats *bench)
 {
 	int	pos;
 
+	bench->strategy = "Simple / O(n^2)";
 	while (!is_sorted(data->a))
 	{
 		pos = find_min_pos(data->a);
-		rotate_to_top(data, pos, print, bench_stats);
-		pb(data, print, bench_stats);
-		bench_stats->pb++;
-		bench_stats->total_ops++;
+		rotate_to_top(data, pos, print, bench);
+		pb(data, print, bench);
+		bench->pb++;
+		bench->total_ops++;
 	}
 	while (data->b->size > 0)
 	{
-		pa(data, print, bench_stats);
-		bench_stats->pa++;
-		bench_stats->total_ops++;
+		pa(data, print, bench);
+		bench->pa++;
+		bench->total_ops++;
 	}
 }

@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_rotate.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/11 16:01:40 by mifranci          #+#    #+#             */
+/*   Updated: 2026/05/11 16:14:56 by mifranci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// O topo da stack passa a ser o fundo. Utilizacao de static para o codigo ficar mais limpo.
 static void	rotate(t_stack *stack)
 {
 	t_node	*first;
@@ -16,9 +27,7 @@ static void	rotate(t_stack *stack)
 	last->next = first;
 	first->next = NULL;
 }
-//Eles dizem Operations must be separated by a \n and nothing else.
 
-// Shift up all elements of stack a by one
 void	ra(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	rotate(data->a);
@@ -27,7 +36,7 @@ void	ra(t_stacks *data, int print, t_bench_stats *bench_stats)
 	if (print)
 		write(1, "ra\n", 3);
 }
-// Shift up all elements of stack b by one
+
 void	rb(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	rotate(data->b);
@@ -38,10 +47,10 @@ void	rb(t_stacks *data, int print, t_bench_stats *bench_stats)
 }
 
 // Shift ra and rb at the same time.
-void	rr(t_stacks *data, int print)
+void	rr(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
-	rotate(data->a);
-	rotate(data->b);
+	ra(data, print, bench_stats);
+	rb(data, print, bench_stats);
 	if (print)
 		write(1, "rr\n", 3);
 }

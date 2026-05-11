@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_swap.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/11 16:00:39 by mifranci          #+#    #+#             */
+/*   Updated: 2026/05/11 16:15:27 by mifranci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// Troca os valores dos 2 nós do topo. Utilizacao de static para o codigo ficar mais limpo.
 static void	swap_top(t_stack *stack)
 {
-	t_node * first;
-	t_node *second;
+	t_node	*first;
+	t_node	*second;
 
 	if (!stack || stack->size < 2)
 		return ;
@@ -14,27 +25,29 @@ static void	swap_top(t_stack *stack)
 	second->next = first;
 	stack->top = second;
 }
-//Eles dizem Operations must be separated by a \n and nothing else.
-// Swap the first two elements at the top of stack a.
-void	sa(t_stacks *data, int print)
+
+void	sa(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	swap_top(data->a);
+	bench_stats->sa++;
+	bench_stats->total_ops++;
 	if (print)
 		write(1, "sa\n", 3);
 }
-// Swap the first two elements at the top of stack b.
-void	sb(t_stacks *data, int print)
+
+void	sb(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	swap_top(data->b);
+	bench_stats->sb++;
+	bench_stats->total_ops++;
 	if (print)
 		write(1, "sb\n", 3);
 }
 
-// Swap sa and sb at the same time.
-void	ss(t_stacks *data, int print)
+void	ss(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
-	swap_top(data->a);
-	swap_top(data->b);
+	sa(data, print, bench_stats);
+	sb(data, print, bench_stats);
 	if (print)
 		write(1, "ss\n", 3);
 }

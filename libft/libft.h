@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 19:49:49 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/06 18:39:51 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:25:20 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 # include <limits.h>
 # include <stdarg.h>
 
-int	ft_printf(const char *fmt, ...);
-int	ft_printf_c(char c);
-int	ft_printf_str(char *str);
-int	ft_printf_hex(unsigned long nb, char c);
-int	ft_printf_dec_int(int nbr);
-int	ft_printf_u(unsigned int nbr);
-int	ft_printf_ptr(void *ptr);
-
+int		ft_printf(const char *fmt, ...);
+int		ft_printf_c(char c);
+int		ft_printf_str(char *str);
+int		ft_printf_hex(unsigned long nb, char c);
+int		ft_printf_dec_int(int nbr);
+int		ft_printf_u(unsigned int nbr);
+int		ft_printf_ptr(void *ptr);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

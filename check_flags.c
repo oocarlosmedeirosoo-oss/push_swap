@@ -1,5 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_flags.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/11 16:10:28 by mifranci          #+#    #+#             */
+/*   Updated: 2026/05/11 16:19:27 by mifranci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -11,7 +22,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-static void init_flags_values(t_flags_values *flags_values)
+static void	init_flags_values(t_flags *flags_values)
 {
 	flags_values->simple = 0;
 	flags_values->medium = 0;
@@ -19,7 +30,8 @@ static void init_flags_values(t_flags_values *flags_values)
 	flags_values->adaptive = 0;
 	flags_values->bench = 0;
 }
-void handle_flag(t_flags_values *flags_values, char *argv)
+
+void	handle_flag(t_flags *flags_values, char *argv)
 {
 	if (ft_strcmp(argv, "--simple") == 0)
 		flags_values->simple += 1;
@@ -39,13 +51,13 @@ void handle_flag(t_flags_values *flags_values, char *argv)
 	}
 }
 
-t_flags_values	*check_flags(char **argv)
+t_flags	*check_flags(char **argv)
 {
-	t_flags_values	*flags_values;
+	t_flags	*flags_values;
 
-	flags_values = malloc(sizeof(t_flags_values));
+	flags_values = malloc(sizeof(t_flags));
 	if (!flags_values)
-		return NULL;
+		return (NULL);
 	init_flags_values(flags_values);
 	while (*argv && ((*argv)[0] == '-' && (*argv)[1] == '-'))
 		handle_flag(flags_values, *argv++);

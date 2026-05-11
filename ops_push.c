@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_push.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/11 16:11:37 by mifranci          #+#    #+#             */
+/*   Updated: 2026/05/11 16:11:45 by mifranci         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-/* Remove o nó do topo da stack src. Utilizacao de static para o codigo ficar mais limpo*/
 static void	push(t_stack *src, t_stack *dest)
 {
 	t_node	*temp;
@@ -15,9 +26,6 @@ static void	push(t_stack *src, t_stack *dest)
 	dest->size++;
 }
 
-//Eles dizem Operations must be separated by a \n and nothing else.
-
-// pa: tira o topo de b e coloca no topo de a.
 void	pa(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	push(data->b, data->a);
@@ -27,7 +35,6 @@ void	pa(t_stacks *data, int print, t_bench_stats *bench_stats)
 		write (1, "pa\n", 3);
 }
 
-// pb: tira o topo de a e coloca no topo de b.
 void	pb(t_stacks *data, int print, t_bench_stats *bench_stats)
 {
 	push(data->a, data->b);
