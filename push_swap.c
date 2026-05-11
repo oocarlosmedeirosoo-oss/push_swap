@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:01:58 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:30:08 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,8 @@ int	main(int argc, char **argv)
 		data = parse_args(argv, pointers_to_bench_flags(bench, flags));
 	if (!data)
 		return (free_memmory_if_not_data(flags, bench), 1);
-	printf("TESTE1\n");
 	if (is_sorted(data->a))
 		return (data_free(data, bench, flags), 0);
-	printf("TESTE2\n");
 	bench->disorder = (int)(compute_disorder(data->a) * 10000); 
 	assign_indices(data->a);
 	choose_what_to_do(data, flags, bench);
