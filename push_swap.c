@@ -6,7 +6,7 @@
 /*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:53:13 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/05/11 20:02:58 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ t_ptr_b_f	pointers_to_bench_flags(t_bench_stats *bench, t_flags *flags)
 
 static void	ini_var(t_stacks **data, t_flags **flags, t_bench_stats **bench)
 {
-	flags = NULL;
-	bench = NULL;
-	data = NULL;
+	*flags = NULL;
+	*bench = NULL;
+	*data = NULL;
 }
 
 int	main(int argc, char **argv)

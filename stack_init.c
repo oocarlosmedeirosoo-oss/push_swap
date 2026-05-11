@@ -6,7 +6,7 @@
 /*   By: cbarbosa <cbarbosa@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 15:16:57 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:53:31 by cbarbosa         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:59:55 by cbarbosa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	stack_free(t_stack *stack)
 
 void	data_free(t_stacks *data, t_bench_stats *bench, t_flags *flags)
 {
-	free(flags);
+	if (flags)
+		free(flags);
 	free(bench);
 	if (!data)
 		return ;
