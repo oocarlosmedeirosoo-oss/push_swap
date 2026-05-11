@@ -6,13 +6,12 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:06 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 16:29:09 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:36:19 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Insertion Sort
 static void	rotate_to_top(t_stacks *data, int pos, int print,
 			t_bench_stats *bench_stats)
 {

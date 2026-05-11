@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 15:53:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:29:55 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:37:23 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	free_split(char **splitted)
 	free(splitted);
 }
 
-static void	parse_args_helper(char **splitted, char **argv, t_stacks *data, t_ptr_b_f ptrs_b_f)
+static void	parse_args_helper(char **splitted, char **argv,
+			t_stacks *data, t_ptr_b_f ptrs_b_f)
 {
 	int		i;
 	t_node	*new;
@@ -50,7 +51,7 @@ static void	parse_args_helper(char **splitted, char **argv, t_stacks *data, t_pt
 		free_split(splitted);
 	}
 }
-#include <stdio.h>
+
 t_stacks	*parse_args(char **argv, t_ptr_b_f ptrs_b_f)
 {
 	char		**splitted;
@@ -75,4 +76,18 @@ void	ft_error(t_stacks *data, t_ptr_b_f ptrs_b_f, char **splitted)
 	data_free(data, ptrs_b_f.bench, ptrs_b_f.flags);
 	write(2, "Error\n", 6);
 	exit(1);
+}
+
+int	sum_flags(t_flags *flags)
+{
+	if (!flags)
+		return (0);
+	if ((flags->simple + flags->medium + flags->complex + flags->adaptive) > 1
+		|| flags->bench > 1)
+	{
+		free(flags);
+		exit(1);
+	}
+	return (flags->simple + flags->medium + flags->complex
+		+ flags->adaptive + flags->bench);
 }

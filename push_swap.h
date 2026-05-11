@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 16:10:08 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:29:00 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:45:37 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-
-// struct pointer to flag struct and bench struct
-
-
 // bench stats
 typedef struct s_bench_stats
 {
@@ -50,7 +46,7 @@ typedef struct s_flags
 typedef struct s_pointer_bench_flag
 {
 	t_bench_stats	*bench;
-	t_flags 		*flags;
+	t_flags			*flags;
 }	t_ptr_b_f;
 
 // Nodes para indexacao
@@ -131,4 +127,6 @@ t_flags		*check_flags(char **argv);
 void		choose_what_to_do(t_stacks *data, t_flags *flags,
 				t_bench_stats *bench);
 int			sum_flags(t_flags *flags);
+void		free_memmory_if_not_data(t_flags *flags, t_bench_stats *bench);
+
 #endif

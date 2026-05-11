@@ -6,7 +6,7 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 16:10:28 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:29:08 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:45:12 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,10 @@ t_flags	*check_flags(char **argv)
 	while (*argv && ((*argv)[0] == '-' && (*argv)[1] == '-'))
 		handle_flag(flags_values, *argv++);
 	return (flags_values);
+}
+
+void	free_memmory_if_not_data(t_flags *flags, t_bench_stats *bench)
+{
+	free(flags);
+	free(bench);
 }

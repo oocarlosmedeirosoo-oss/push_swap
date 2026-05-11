@@ -6,25 +6,11 @@
 /*   By: mifranci <mifranci@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:42:11 by mifranci          #+#    #+#             */
-/*   Updated: 2026/05/11 19:30:08 by mifranci         ###   ########.fr       */
+/*   Updated: 2026/05/11 19:46:58 by mifranci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	sum_flags(t_flags *flags)
-{
-	if (!flags)
-		return (0);
-	if ((flags->simple + flags->medium + flags->complex + flags->adaptive) > 1
-		|| flags->bench > 1)
-	{
-		free(flags);
-		exit(1);
-	}
-	return (flags->simple + flags->medium + flags->complex
-		+ flags->adaptive + flags->bench);
-}
 
 t_bench_stats	*ini_bench(void)
 {
@@ -67,22 +53,22 @@ void	print_bench_stats(t_bench_stats *bench)
 		bench->ra, bench->rb, bench->rr, bench->rra, bench->rrb, bench->rrr);
 }
 
-static void	free_memmory_if_not_data(t_flags *flags, t_bench_stats *bench)
+t_ptr_b_f	pointers_to_bench_flags(t_bench_stats *bench, t_flags *flags)
 {
-	free(flags);
-	free(bench);
-}
-
-t_ptr_b_f pointers_to_bench_flags(t_bench_stats *bench, t_flags *flags)
-{
-	t_ptr_b_f ptrs_b_f;
+	t_ptr_b_f	ptrs_b_f;
 
 	ptrs_b_f.bench = bench;
 	ptrs_b_f.flags = flags;
 	return (ptrs_b_f);
 }
 
-#include <stdio.h>
+static void	ini_var(t_stacks **data, t_flags **flags, t_bench_stats **bench)
+{
+	flags = NULL;
+	bench = NULL;
+	data = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stacks		*data;
@@ -91,9 +77,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	flags = NULL;
-	bench = NULL;
-	data = NULL;
+	ini_var(&data, &flags, &bench);
 	argv++;
 	if ((*argv)[0] == '-' && (*argv)[1] == '-')
 		flags = check_flags(argv);
@@ -105,7 +89,7 @@ int	main(int argc, char **argv)
 		return (free_memmory_if_not_data(flags, bench), 1);
 	if (is_sorted(data->a))
 		return (data_free(data, bench, flags), 0);
-	bench->disorder = (int)(compute_disorder(data->a) * 10000); 
+	bench->disorder = (int)(compute_disorder(data->a) * 10000);
 	assign_indices(data->a);
 	choose_what_to_do(data, flags, bench);
 	if (flags && flags->bench)
